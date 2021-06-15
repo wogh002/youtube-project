@@ -1,0 +1,38 @@
+.video{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0.6rem;
+    transition: transform 250ms ease-in-out;
+}
+.video:hover{
+    transform: scale(1.03);
+}
+.thumbnail{
+    width: 90%;
+}
+.infoContanier{
+    margin-left: 1.1rem;
+}
+.title{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+.channel{
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width: 48rem) { 
+    .video{
+        width: 100%;
+    }
+   
+ 
+}
+
+
+
+ 
+

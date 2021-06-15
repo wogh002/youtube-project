@@ -1,0 +1,37 @@
+.header{
+    height: 7.3rem;
+    margin-bottom: 1.6rem;
+}
+.fixed{
+    display: flex;
+    width: 100%;
+    padding: 1.2rem;
+    position: fixed;
+    align-items: center;
+    background-color: #202020;
+    z-index: 3;
+}
+.menubar,
+.logo{
+    display: block;
+    margin-right: 1.5rem;
+}
+.headerInfo{
+    margin-right: 10rem;
+    position: relative;
+}
+.title{
+    font-size: 2.0rem;
+}
+.titleLang{
+    position: absolute;
+    top: -7px;
+    right: -16px;
+    opacity: 0.6;
+}
+
+
+
+
+
+

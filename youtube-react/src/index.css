@@ -4,4 +4,11 @@
 }
 html{
     font-size:62.5%;
+    background-color: #181818;
+    color: white;
+}
+ol,
+ul{
+  list-style: none;
+  padding: 0;  
 }
