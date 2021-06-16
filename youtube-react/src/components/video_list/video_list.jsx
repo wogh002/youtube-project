@@ -6,7 +6,7 @@ const VideoList = ({ videos, onSelect }) => {
     return (
         <ul className={style.list}>
             {
-                videos.map(video => <VideoItem key={video.id} video={video} onSelect={onSelect} />)
+                videos.map(video => <VideoItem key={video.id} video={video} onSelect={onSelect}/>)
             }
         </ul>
     )

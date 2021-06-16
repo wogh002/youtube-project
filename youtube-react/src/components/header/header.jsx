@@ -32,16 +32,16 @@ const Header = ({ onSearch }) => {
         <header className={style.header}>
             <div className={style.fixed}>
                 <span className={style.menubar}>
-                    <i class="fas fa-bars fa-lg"></i>
+                    <i className="fas fa-bars fa-lg"></i>
                 </span>
-                <img src="./images/logo.png" className={style.logo}></img>
+                <img src="./images/logo.png" className={style.logo} alt="logo"></img>
                 <div className={style.headerInfo}>
                     <h1 className={style.title}>YouTube</h1>
                     <span className={style.titleLang}>KR</span>
                 </div>
                 <input className={style.input} ref={inputRef} onKeyPress={onKeyPress} type="text" placeholder="Search.."></input>
                 <button className={style.btn} onClick={onClick}>
-                    <img className={style.search} src="./images/search.png"></img>
+                    <img className={style.search} src="./images/search.png" alt="search"></img>
                 </button>
             </div>
         </header>

@@ -10,21 +10,39 @@ function App({ youtube }) {
   const onSelect = item => {
     setSelectedVideo(item);
   }
-  const onSearch = query =>{
+  const getNewVideos = (thumbnailURL, videos) => {
+    console.log(thumbnailURL);
+    const newVideos = videos.map(item => {
+      item.thumbnailURL = thumbnailURL.shift();
+      return item;
+    })
+    console.log(newVideos);
+    setVideo(newVideos);
+  }
+  const onSearch = query => {
     youtube
-    .search(query)
-    .then(videos => setVideo(videos))
+      .search(query)
+      .then(videos => {
+        const channelId = videos.map(item => item.snippet.channelId);
+        youtube.getChannelInfo(channelId)
+          .then(thumbnails => getNewVideos(thumbnails, videos));
+      });
   }
   useEffect(() => {
     youtube
       .getMostPopular()
-      .then(videos => setVideo(videos))
-  }, [youtube])
-
+      .then(videos => {
+        const channelId = videos.map(item => item.snippet.channelId);
+        youtube.getChannelInfo(channelId)
+          .then(thumbnails => {
+            getNewVideos(thumbnails, videos)
+          });
+      })
+  }, [])
 
   return (
     <section className={style.container}>
-      <Header onSearch={onSearch}/>
+      <Header onSearch={onSearch} />
       <VideoList videos={video} onSelect={onSelect} />
       {
         selectedVideo && <VideoDetail selectedVideo={selectedVideo} />
