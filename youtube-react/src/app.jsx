@@ -32,11 +32,7 @@ function App({ youtube }) {
     youtube
       .getMostPopular()
       .then(videos => {
-        const channelId = videos.map(item => item.snippet.channelId);
-        youtube.getChannelInfo(channelId)
-          .then(thumbnails => {
-            getNewVideos(thumbnails, videos)
-          });
+        youtube.getChannelInfo(videos).then(array => console.log(array))
       })
   }, [])
 

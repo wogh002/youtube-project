@@ -25,19 +25,22 @@ class Youtube {
         })
         return response.data.items.map(item => ({ ...item, id: item.id.videoId }));
     }
-    async getChannelInfo(channelId) {
-        const id = channelId.map(item => item).toString();
-        console.log(id);
-        const response = await this.httpClient.get('/channels', {
-            params: {
-                part: 'snippet',
-                id
-            },
-        })
-        return response.data.items.map(item => item.snippet.thumbnails.default.url);
 
+
+    async getChannelInfo(videos, array = []) {
+        for (let i = 0; i < videos.length; i++) {
+            const response = await this.httpClient.get('/channels', {
+                params: {
+                    part: 'snippet',
+                    id: videos[i].snippet.channelId
+                }
+            })
+            array.push(response);
+            console.log(array);
+        }
     }
 }
+
 
 
 export default Youtube;
