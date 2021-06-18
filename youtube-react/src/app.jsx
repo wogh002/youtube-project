@@ -10,31 +10,31 @@ function App({ youtube }) {
   const onSelect = item => {
     setSelectedVideo(item);
   }
-  const getNewVideos = (thumbnailURL, videos) => {
-    console.log(thumbnailURL);
+  const addNewVideos = (thumbnailURLs, videos) => {
     const newVideos = videos.map(item => {
-      item.thumbnailURL = thumbnailURL.shift();
+      item.thumbnailURL = thumbnailURLs.shift();
       return item;
     })
-    console.log(newVideos);
     setVideo(newVideos);
+  }
+  const requestChannelInfo = videos => {
+    youtube.getChannelInfo(videos)
+      .then(thumbnailURLs => addNewVideos(thumbnailURLs, videos));
   }
   const onSearch = query => {
     youtube
       .search(query)
       .then(videos => {
-        const channelId = videos.map(item => item.snippet.channelId);
-        youtube.getChannelInfo(channelId)
-          .then(thumbnails => getNewVideos(thumbnails, videos));
+        requestChannelInfo(videos);
       });
   }
   useEffect(() => {
     youtube
       .getMostPopular()
       .then(videos => {
-        youtube.getChannelInfo(videos).then(array => console.log(array))
+        requestChannelInfo(videos);
       })
-  }, [])
+  }, [youtube])
 
   return (
     <section className={style.container}>
