@@ -10,11 +10,20 @@
 .video:hover{
     transform: scale(1.03);
 }
+.video.list {
+    width: 100%;
+}
+.video.grid{
+    width: 25%;
+}
 .thumbnail{
-    width: 90%;
+    width: 80%;
 }
 .infoContanier{
     margin-left: 1.1rem;
+}
+.channelThumbnail{
+    width: 10%;
 }
 .title{
     font-size: 1.3rem;
@@ -24,7 +33,7 @@
     font-size: 1.1rem;
 }
 
-@media screen and (max-width: 48rem) { 
+@media screen and (max-width: 20rem) { 
     .video{
         width: 100%;
     }
