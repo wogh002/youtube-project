@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './video_detail.module.css';
 
-const VideoDetail = ({ video }) => {
+const VideoDetail = ({ video, video: { statistics } }) => {
     return (
         <section className={style.video}>
             <iframe
@@ -14,6 +14,9 @@ const VideoDetail = ({ video }) => {
                 frameBorder="0"
                 allowFullScreen>
             </iframe>
+            <span>조회수 {video.viewCount}</span>
+            <span>좋아요 {statistics.likeCount}</span>
+            <span>싫어요 {statistics.dislikeCount}</span>
         </section>
     )
 }

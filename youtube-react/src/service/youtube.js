@@ -5,9 +5,9 @@ class Youtube {
     async getMostPopular() {
         const response = await this.httpClient.get('/videos', {
             params: {
-                part: 'snippet',
+                part: 'snippet,statistics',
                 chart: 'mostPopular',
-                maxResults: 5,
+                maxResults: 3,
                 regionCode: 'KR'
             }
         })
@@ -18,38 +18,33 @@ class Youtube {
             params: {
                 part: 'snippet',
                 type: 'video',
-                maxResults: 6,
+                maxResults: 3,
                 regionCode: 'KR',
                 q: query
             }
         })
         return response.data.items.map(item => ({ ...item, id: item.id.videoId }));
     }
-    async getChannelInfo(videos, promiseArr = []) {
+    async getChannelInfo(videos, thumbnailURLs = [], viewCounts = []) {
         for (let i = 0; i < videos.length; i++) {
-            const response = await this.httpClient.get('/channels', {
+            const { data: { items: [channelInfo] } } = await this.httpClient.get('/channels', {
                 params: {
                     part: 'snippet,statistics',
                     id: videos[i].snippet.channelId
                 }
             })
-            promiseArr.push(...response.data.items);
+            const { snippet: { thumbnails: { default: { url } } }, statistics: { viewCount } } = channelInfo;
+            thumbnailURLs.push(url);
+            viewCounts.push(viewCount);
         }
-        console.log(promiseArr);
-        return Promise.resolve(promiseArr.map(item => item.snippet.thumbnails.default.url));
+        return Promise.resolve(videos.map(item => {
+            return ({
+                ...item,
+                viewCount: viewCounts.shift(),
+                thumbnailURL: thumbnailURLs.shift()
+            })
+        }));
     }
-    // async getChannelInfo(videos, promiseArr = []) {
-    //     for (let i = 0; i < videos.length; i++) {
-    //         const response = await this.httpClient.get('/channels', {
-    //             params: {
-    //                 part: 'snippet,statistics',
-    //                 id: videos[i].snippet.channelId
-    //             }
-    //         })
-    //         promiseArr.push(...response.data.items);
-    //     }
-    //     return Promise.resolve(promiseArr.map(item => item.snippet.thumbnails.default.url));
-    // }
 }
 
 

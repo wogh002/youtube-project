@@ -12,7 +12,7 @@ const VideoItems = ({ video, video: { snippet }, onSelect, display }) => {
                 <div className={style.channelInfo}>
                     <h1 className={style.title}>{snippet.title}</h1>
                     <p className={style.channel}>{snippet.channelTitle}</p>
-                    {/* <span className={style.viewCount}>조회수 {video.statistics.viewCount}</span> */}
+                    <span className={style.viewCount}>조회수 {video.viewCount}</span>
                 </div>
             </div>
         </li>

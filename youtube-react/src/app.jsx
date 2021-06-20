@@ -9,26 +9,17 @@ function App({ youtube }) {
   const GRID = 'grid';
   const [video, setVideo] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-
   const onSelect = item => {
     setSelectedVideo(item);
   }
-  const addNewVideos = (thumbnailURLs, videos) => {
-    const newVideos = videos.map(item => {
-      item.thumbnailURL = thumbnailURLs.shift();
-      return item;
-    })
-    setVideo(newVideos);
-  }
-
   const onSearch = query => {
     youtube
       .search(query)
       .then(videos => {
         youtube.getChannelInfo(videos)
-          .then(thumbnailURLs => {
+          .then(newVideos => {
             setSelectedVideo(null);
-            addNewVideos(thumbnailURLs, videos)
+            setVideo(newVideos);
           });
       });
   }
@@ -37,7 +28,7 @@ function App({ youtube }) {
       .getMostPopular()
       .then(videos => {
         youtube.getChannelInfo(videos)
-          .then(thumbnailURLs => addNewVideos(thumbnailURLs, videos));
+          .then(newVideos => setVideo(newVideos))
       })
   }, [youtube])
 
