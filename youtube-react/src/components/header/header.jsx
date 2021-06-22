@@ -1,22 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 import style from './header.module.css';
-
-const Header = ({ onSearch }) => {
+const Header = memo(({ onSearch }) => {
     const ENTER = 'Enter';
     const inputRef = useRef();
-
     const resetInput = () => {
         inputRef.current.value = '';
         inputRef.current.focus();
     }
-
     const onKeyPress = event => {
         if (event.code === ENTER && inputRef.current.value.trim()) {
             onSearch(inputRef.current.value);
             resetInput();
         }
         else if (!inputRef.current.value.trim()) {
-            resetInput(); 
+            resetInput();
         }
     }
     const onClick = () => {
@@ -40,7 +37,7 @@ const Header = ({ onSearch }) => {
                     <span className={style.titleLang}>KR</span>
                 </a>
                 <div className={style.search}>
-                    <input className={style.input} ref={inputRef} onKeyPress={onKeyPress}type="text" placeholder="검색"></input>
+                    <input className={style.input} ref={inputRef} onKeyPress={onKeyPress} type="text" placeholder="검색"></input>
                     <button type="button" className={style.keyboard}><i className="fas fa-keyboard"></i></button>
                     <button type="button" className={style.searchBtn} onClick={onClick}>
                         <img className={style.searchIcon} src="./images/search.png" alt="search"></img>
@@ -56,6 +53,5 @@ const Header = ({ onSearch }) => {
             </div>
         </header>
     )
-};
-
+});
 export default Header;

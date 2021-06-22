@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './video_detail.module.css';
-
 const VideoDetail = ({ video }) => {
+    
     return (
         <section>
             <div className={style.videoContainer}>

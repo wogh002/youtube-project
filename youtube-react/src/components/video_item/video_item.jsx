@@ -1,8 +1,6 @@
 import React from 'react';
 import style from './video_item.module.css';
-
 const VideoItems = ({ video, video: { snippet }, onSelect, display }) => {
-    //display === list 라면 셀렉티드 된 비디오가 있다는 것.
     const displayType = display === 'list' ? style.list : style.grid;
     return (
         <li className={`${style.video} ${displayType}`} onClick={() => { onSelect(video) }}>

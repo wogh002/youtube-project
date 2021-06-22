@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import style from './app.module.css';
 import Header from './components/header/header';
 import VideoList from './components/video_list/video_list';
 import VideoDetail from './components/video_detail/video_detail';
-
 function App({ youtube }) {
   const LIST = 'list';
   const GRID = 'grid';
   const [video, setVideo] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const onSelect = item => {
+  const onSelect = useCallback(item => {
     setSelectedVideo(item);
-  }
-  const onSearch = query => {
+  }, []);
+  const onSearch = useCallback(query => {
     youtube
       .search(query)
       .then(videos => {
@@ -22,16 +21,17 @@ function App({ youtube }) {
             setVideo(newVideos);
           });
       });
-  }
+  }, [youtube]);
   useEffect(() => {
     youtube
       .getMostPopular()
       .then(videos => {
         youtube.getChannelInfo(videos)
-          .then(newVideos => setVideo(newVideos));
+          .then(newVideos => {
+            setVideo(newVideos)
+          });
       })
-  }, [youtube])
-
+  }, [youtube]);
   return (
     <section className={style.container}>
       <Header onSearch={onSearch} />
@@ -50,5 +50,4 @@ function App({ youtube }) {
     </section>
   );
 }
-
 export default App;
