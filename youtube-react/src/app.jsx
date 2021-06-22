@@ -28,7 +28,7 @@ function App({ youtube }) {
       .getMostPopular()
       .then(videos => {
         youtube.getChannelInfo(videos)
-          .then(newVideos => setVideo(newVideos))
+          .then(newVideos => setVideo(newVideos));
       })
   }, [youtube])
 

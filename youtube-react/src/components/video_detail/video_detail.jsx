@@ -1,22 +1,28 @@
 import React from 'react';
 import style from './video_detail.module.css';
 
-const VideoDetail = ({ video, video: { statistics } }) => {
+const VideoDetail = ({ video }) => {
     return (
-        <section className={style.video}>
-            <iframe
-                id="ytplayer"
-                type="text/html"
-                title="youtube video player"
-                width="100%"
-                height="500"
-                src={`https://www.youtube.com/embed/${video.id}`}
-                frameBorder="0"
-                allowFullScreen>
-            </iframe>
-            <span>조회수 {video.viewCount}</span>
-            <span>좋아요 {statistics.likeCount}</span>
-            <span>싫어요 {statistics.dislikeCount}</span>
+        <section>
+            <div className={style.videoContainer}>
+                <iframe
+                    id="ytplayer"
+                    type="text/html"
+                    title="youtube video player"
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    frameBorder="0"
+                    allowFullScreen>
+                </iframe>
+            </div>
+            <h1 className={style.title}>{video.snippet.title}</h1>
+            <div className={style.channelInfo}>
+                <div className={style.youtuber}>
+                    <img src={video.thumbnailURL} className={style.thumbnail} alt="channel thumbnail" />
+                    <h2 className={style.channelTitle}>{video.snippet.channelTitle}</h2>
+                </div>
+                <button type="button" className={style.btn}>구독</button>
+            </div>
+            <p className={style.description}>{video.snippet.description}</p>
         </section>
     )
 }

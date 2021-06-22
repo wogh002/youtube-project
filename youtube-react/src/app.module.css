@@ -3,7 +3,13 @@
 }
 .detail{
     flex: 1 1 70%;
+    padding:1rem 2rem;
 }
 .list{
     flex: 1 1 30%;
+}
+@media screen and (max-width: 600px) { 
+    .videoContainer{
+        flex-direction: column;
+    }
 }

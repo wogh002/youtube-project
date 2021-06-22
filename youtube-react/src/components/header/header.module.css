@@ -1,34 +1,99 @@
-.header{
-    height: 7.3rem;
-    margin-bottom: 1.6rem;
+a{
+    text-decoration: none;
+    color: white;
+}
+button,
+input{
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    background: transparent;
 }
 .fixed{
     display: flex;
-    width: 100%;
-    padding: 1.2rem;
-    position: fixed;
+    justify-content: space-between;
     align-items: center;
+    padding: 12px;
     background-color: #202020;
-    z-index: 3;
-}
-.menubar,
-.logo{
-    display: block;
-    margin-right: 1.5rem;
 }
 .headerInfo{
-    margin-right: 10rem;
+    display: flex;
+    align-items: center;
     position: relative;
+    flex-shrink: 0;
 }
-.title{
-    font-size: 2.0rem;
+.menubar{
+    margin-right:1.5rem;
+}
+.logo{
+    width: 21%;
+    height: auto;
+    margin-right: 0.3rem;
 }
 .titleLang{
     position: absolute;
-    top: -7px;
-    right: -16px;
+    top: 0;
+    right: 0;
     opacity: 0.6;
 }
+.search{
+    flex-shrink: 0;
+    width: 50%;
+    position: relative;
+}
+.input{
+    font-size: 16px;
+    border:1px solid rgb(58, 56, 56);
+    padding: 0.1rem 0.5rem;
+    width: 60%;
+    line-height:2;
+}
+.keyboard{
+    position: absolute;
+    font-size: 16px;
+    transform: translate(-123%,43%);
+}
+.searchBtn{
+    border:1px solid rgb(58, 56, 56);
+    background: rgb(53, 51, 51);
+    width: 10%;
+    height: 37px;
+    margin-right: 8px;
+}
+.searchIcon{
+    width: 14px;
+}
+.microphone{
+    font-size: 19px;
+}
+.info{
+    flex-shrink: 0;
+}
+.info button{
+    font-size: 1.7rem;
+    margin-right: 2rem;
+}
+
+@media screen and (max-width: 600px) { 
+    .info{
+        display: none;
+    }
+    .searchBtn{
+        width: 20%;
+    }
+    .microphone{
+        display: none;
+    }
+    .keyboard{
+        display: none;    
+    }
+
+}
+
+
+
+
 
 
 

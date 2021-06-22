@@ -15,8 +15,8 @@ const Header = ({ onSearch }) => {
             onSearch(inputRef.current.value);
             resetInput();
         }
-        else if(!inputRef.current.value.trim()){
-            resetInput();
+        else if (!inputRef.current.value.trim()) {
+            resetInput(); 
         }
     }
     const onClick = () => {
@@ -31,18 +31,28 @@ const Header = ({ onSearch }) => {
     return (
         <header className={style.header}>
             <div className={style.fixed}>
-                <span className={style.menubar}>
-                    <i className="fas fa-bars fa-lg"></i>
-                </span>
-                <img src="./images/logo.png" className={style.logo} alt="logo"></img>
-                <div className={style.headerInfo}>
+                <a href="./" className={style.headerInfo}>
+                    <span className={style.menubar}>
+                        <i className="fas fa-bars fa-lg"></i>
+                    </span>
+                    <img src="./images/logo.png" className={style.logo} alt="logo"></img>
                     <h1 className={style.title}>YouTube</h1>
                     <span className={style.titleLang}>KR</span>
+                </a>
+                <div className={style.search}>
+                    <input className={style.input} ref={inputRef} onKeyPress={onKeyPress}type="text" placeholder="검색"></input>
+                    <button type="button" className={style.keyboard}><i className="fas fa-keyboard"></i></button>
+                    <button type="button" className={style.searchBtn} onClick={onClick}>
+                        <img className={style.searchIcon} src="./images/search.png" alt="search"></img>
+                    </button>
+                    <button type="button" className={style.microphone}><i className="fas fa-microphone"></i></button>
                 </div>
-                <input className={style.input} ref={inputRef} onKeyPress={onKeyPress} type="text" placeholder="Search.."></input>
-                <button className={style.btn} onClick={onClick}>
-                    <img className={style.search} src="./images/search.png" alt="search"></img>
-                </button>
+                <div className={style.info}>
+                    <button type="button"><i className="fas fa-video"></i></button>
+                    <button type="button"><i className="fas fa-ellipsis-v"></i></button>
+                    <button type="button"><i className="fas fa-bell"></i></button>
+                    <button type="button"><i className="fas fa-circle-notch"></i></button>
+                </div>
             </div>
         </header>
     )

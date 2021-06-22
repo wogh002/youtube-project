@@ -5,7 +5,7 @@ class Youtube {
     async getMostPopular() {
         const response = await this.httpClient.get('/videos', {
             params: {
-                part: 'snippet,statistics',
+                part: 'snippet',
                 chart: 'mostPopular',
                 maxResults: 3,
                 regionCode: 'KR'
@@ -25,22 +25,20 @@ class Youtube {
         })
         return response.data.items.map(item => ({ ...item, id: item.id.videoId }));
     }
-    async getChannelInfo(videos, thumbnailURLs = [], viewCounts = []) {
+    async getChannelInfo(videos, thumbnailURLs = []) {
         for (let i = 0; i < videos.length; i++) {
             const { data: { items: [channelInfo] } } = await this.httpClient.get('/channels', {
                 params: {
-                    part: 'snippet,statistics',
+                    part: 'snippet',
                     id: videos[i].snippet.channelId
                 }
             })
-            const { snippet: { thumbnails: { default: { url } } }, statistics: { viewCount } } = channelInfo;
+            const { snippet: { thumbnails: { default: { url } } } } = channelInfo;
             thumbnailURLs.push(url);
-            viewCounts.push(viewCount);
         }
         return Promise.resolve(videos.map(item => {
             return ({
                 ...item,
-                viewCount: viewCounts.shift(),
                 thumbnailURL: thumbnailURLs.shift()
             })
         }));
