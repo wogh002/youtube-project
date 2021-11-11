@@ -1,6 +1,7 @@
 # youtube project with react 📽
 
 ### 👉 [Youtube Project 바로가기](https://wogh002.github.io/youtube-project/ "프로젝트 바로가기")
+----- 현재 API 사용량 초과로 인해 접속 불가합니다 ---------
 
 
 ### Skills 📝
